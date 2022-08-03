@@ -45,6 +45,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 })
           ],
         ),
-        body: Container());
+        body: ListView.builder(
+            itemCount: 4,
+            itemBuilder: (context, int index) {
+              return Card(
+                elevation: 5,
+                margin: const EdgeInsets.all(5.0),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    child: FittedBox(
+                      child: Text("44"),
+                    ),
+                  ),
+                  title: Text("รายการ"),
+                  subtitle: Text("1"),
+                ),
+              );
+            }));
   }
 }
