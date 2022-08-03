@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 class FormScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
+  final titleController = TextEditingController();
+  final productController = TextEditingController();
+  final priceController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +21,7 @@ class FormScreen extends StatelessWidget {
                 TextFormField( 
                   decoration: new InputDecoration(labelText: "ชื่อสินค้า"),
                   autofocus: true,
+                  controller: titleController,
                   validator: (String? str){
                       if(str!.isEmpty){
                           return "กรุณาป้อนรายการ";
@@ -28,10 +32,21 @@ class FormScreen extends StatelessWidget {
                 TextFormField(
                   decoration: new InputDecoration(labelText: "จำนวนสินค้า"),
                   keyboardType: TextInputType.number,
+                  controller: productController,
+                  validator: (String? str){
+                    if(str!.isEmpty){
+                          return "กรุณาป้อนราคาสินค้า";
+                      }
+                      if(double.parse(str)<=0){
+                        return "กรุณาป้อนตัวเลขมากกว่า 0";
+                      }
+                      return null;
+                  },
                 ),
                 TextFormField(
                   decoration: new InputDecoration(labelText: "ราคาสินค้า"),
                   keyboardType: TextInputType.number,
+                  controller: priceController,
                   validator: (String? str){
                     if(str!.isEmpty){
                           return "กรุณาป้อนราคาสินค้า";
@@ -47,7 +62,15 @@ class FormScreen extends StatelessWidget {
                   color: Colors.pink,
                   textColor: Colors.white,
                   onPressed: (){
-                    if(formKey.currentState!.validate()){         
+                    if(formKey.currentState!.validate()){   
+                      var title = titleController.text;
+                      var product = productController.text;  
+                      var price = priceController.text;     
+
+                      print(title);
+                      print(product);
+                      print(price); 
+                      
                       Navigator.pop(context);
                     }
                   }, 
