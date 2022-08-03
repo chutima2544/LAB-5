@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_o2/models/Information.dart';
 import 'package:flutter_application_o2/providers/information_provider.dart';
 import 'package:flutter_application_o2/screens/form_screen.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context){
-            return InformationProvider();
+        ChangeNotifierProvider(create: (context) {
+          return InformationProvider();
         })
       ],
       child: MaterialApp(
@@ -54,22 +55,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 })
           ],
         ),
-        body: ListView.builder(
-            itemCount: 4,
+        body: Consumer(
+          builder: (context, InformationProvider provider, Widget? child) {
+            return ListView.builder(
+            itemCount: provider.informations.length,
             itemBuilder: (context, int index) {
+              Information data = provider.informations[index];
               return Card(
                 elevation: 5,
                 margin: const EdgeInsets.all(5.0),
                 child: ListTile(
                   leading: CircleAvatar(
                     child: FittedBox(
-                      child: Text("44"),
+                      child: Text(data.price.toString()),
                     ),
                   ),
-                  title: Text("รายการ"),
-                  subtitle: Text("1"),
+                  title: Text(data.title),
+                  subtitle: Text(data.product.toString()),
                 ),
               );
-            }));
+            });
+          },
+        ));
   }
 }
