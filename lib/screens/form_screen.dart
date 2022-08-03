@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_o2/models/Information.dart';
+import 'package:flutter_application_o2/providers/information_provider.dart';
+import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -65,12 +68,16 @@ class FormScreen extends StatelessWidget {
                     if(formKey.currentState!.validate()){   
                       var title = titleController.text;
                       var product = productController.text;  
-                      var price = priceController.text;     
+                      var price = priceController.text;  
 
-                      print(title);
-                      print(product);
-                      print(price); 
-                      
+                      Information statement = Information(
+                        title:title,
+                        product: double.parse(product),
+                        price: double.parse(price),
+                      );   
+
+                      var provider = Provider.of<InformationProvider>(context,listen:false);
+                      provider.addInformation(statement);
                       Navigator.pop(context);
                     }
                   }, 
