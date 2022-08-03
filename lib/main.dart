@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_o2/screens/form_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 icon: Icon(Icons.add),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Text("สมุด");
+                    return FormScreen();
                   }));
                 })
           ],
