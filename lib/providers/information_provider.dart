@@ -10,9 +10,9 @@ class InformationProvider with ChangeNotifier{
         return informations;
       }
 
-      void addInformation(Informations statement){
-          var db = InformationDB(dbName: "information.db").openDatabase();
-          print(db);
+      void addInformation(Informations statement) async{
+          var db = InformationDB(dbName: "information.db");
+          await db.InsertData(statement);
           informations.insert(0,statement);
 
           notifyListeners();
