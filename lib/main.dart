@@ -57,24 +57,34 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Consumer(
           builder: (context, InformationProvider provider, Widget? child) {
-            return ListView.builder(
-            itemCount: provider.informations.length,
-            itemBuilder: (context, int index) {
-              Information data = provider.informations[index];
-              return Card(
-                elevation: 5,
-                margin: const EdgeInsets.all(5.0),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    child: FittedBox(
-                      child: Text(data.price.toString()),
-                    ),
-                  ),
-                  title: Text(data.title),
-                  subtitle: Text(data.product.toString()),
+            var count = provider.informations.length;
+            if (count <= 0) {
+              return Center(
+                child: Text(
+                  "ไม่พบข้อมูล",
+                  style: TextStyle(fontSize: 35),
                 ),
               );
-            });
+            } else {
+              return ListView.builder(
+                  itemCount: provider.informations.length,
+                  itemBuilder: (context, int index) {
+                    Information data = provider.informations[index];
+                    return Card(
+                      elevation: 5,
+                      margin: const EdgeInsets.all(5.0),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          child: FittedBox(
+                            child: Text(data.price.toString()),
+                          ),
+                        ),
+                        title: Text(data.title),
+                        subtitle: Text(data.product.toString()),
+                      ),
+                    );
+                  });
+            }
           },
         ));
   }
