@@ -13,6 +13,7 @@ class InformationProvider with ChangeNotifier{
       void addInformation(Informations statement) async{
           var db = InformationDB(dbName: "information.db");
           await db.InsertData(statement);
+          await db.loadAllData();
           informations.insert(0,statement);
 
           notifyListeners();

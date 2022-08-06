@@ -32,4 +32,12 @@ class InformationDB {
     db.close();
     return keyID;
   }
+
+  Future <bool> loadAllData() async{
+    var db = await this.openDatabase();
+    var store = intMapStoreFactory.store("expense");
+    var snapshot = await store.find(db);
+    print(snapshot);
+    return true;
+  }
 }
