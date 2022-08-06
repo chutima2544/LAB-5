@@ -21,4 +21,14 @@ class InformationDB{
     Database db = await dbFactory.openDatabase(dbLacation);
     return db;
   }
+  InsertData(Informations statement) async{
+    var db = await this.openDatabase();
+    var store = intMapStoreFactory.store("expense");
+
+    store.add(db, {
+      "title":statement.title,
+      "product":statement.product,
+      "price":statement.price
+    });
+  }
 }
