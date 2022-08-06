@@ -51,6 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return HomeScreen();
+    return DefaultTabController(
+      length: 2, 
+      child: Scaffold(
+        body: TabBarView(
+          children: [
+            HomeScreen(),
+            FormScreen()
+          ]),
+        )
+      ,);
   }
 }
