@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         })
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'เครื่องเขียนหรรษา',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -41,25 +41,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<InformationProvider>(context,listen: false).initData();
+    Provider.of<InformationProvider>(context, listen: false).initData();
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, 
+      length: 2,
       child: Scaffold(
-        body: TabBarView(
-          children: [
-            HomeScreen(),
-            FormScreen()
-          ]),
-        )
-      ,);
+        backgroundColor: Colors.orange,
+        body: TabBarView(children: [HomeScreen(), FormScreen()]),
+        bottomNavigationBar: TabBar(
+          tabs: [
+            Tab(
+              icon: Icon(Icons.list),
+              text: "รายการสินค้า",
+            ),
+            Tab(
+              icon: Icon(Icons.add),
+              text: "เพิ่มข้อมูล",
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_o2/models/Informations.dart';
 import 'package:flutter_application_o2/providers/information_provider.dart';
+import 'package:flutter_application_o2/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 class FormScreen extends StatelessWidget {
@@ -78,7 +79,11 @@ class FormScreen extends StatelessWidget {
 
                       var provider = Provider.of<InformationProvider>(context,listen:false);
                       provider.addInformation(statement);
-                      Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context){
+                        return HomeScreen();
+                      }));
                     }
                   }, 
                   )
