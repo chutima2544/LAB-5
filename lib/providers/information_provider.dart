@@ -11,11 +11,16 @@ class InformationProvider with ChangeNotifier{
       }
 
       void addInformation(Informations statement) async{
-          var db = InformationDB(dbName: "information.db");
+          var db = InformationDB(dbName: "informations.db");
           await db.InsertData(statement);
-          await db.loadAllData();
-          informations.insert(0,statement);
-
+          var snapshot = await db.loadAllData();
+          for(var record in snapshot){
+            double P1 = record["product"] as double;
+            double P2 = record["price"] as double;
+            Informations infor = Informations(title: record["title"].toString(), product: P1, price: P2);
+            informations.add(infor);
+          }
+          informations;
           notifyListeners();
       }
 }

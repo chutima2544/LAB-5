@@ -11,17 +11,17 @@ class InformationDB {
 
   InformationDB({required this.dbName});
 
-  Future<Database> openDatabase() async {
+  Future <Database> openDatabase() async {
     Directory appDirectory = await getApplicationDocumentsDirectory();
     String dbLacation = join(appDirectory.path, dbName);
-
+    print(appDirectory);
     DatabaseFactory dbFactory = await databaseFactoryIo;
     Database db = await dbFactory.openDatabase(dbLacation);
     return db;
   }
 
-  Future<int> InsertData(Informations statement) async {
-    var db = await this.openDatabase();
+  Future <int> InsertData(Informations statement) async {
+    var db = await openDatabase();
     var store = intMapStoreFactory.store("expense");
 
     var keyID = store.add(db, {
@@ -33,11 +33,10 @@ class InformationDB {
     return keyID;
   }
 
-  Future <bool> loadAllData() async{
+  Future loadAllData() async{
     var db = await this.openDatabase();
     var store = intMapStoreFactory.store("expense");
-    var snapshot = await store.find(db);
-    print(snapshot);
-    return true;
+    var snapshot = await store.find(db, finder: Finder(sortOrders: [SortOrder(Field.key,false)]));
+    return snapshot;
   }
 }
