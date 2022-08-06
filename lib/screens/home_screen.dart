@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_o2/models/Informations.dart';
@@ -28,11 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text("เครื่องเขียนหรรษา"),
           actions: [
             IconButton(
-                icon: Icon(Icons.add),
+                icon: Icon(Icons.exit_to_app),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return FormScreen();
-                  }));
+                  SystemNavigator.pop();
                 })
           ],
         ),
