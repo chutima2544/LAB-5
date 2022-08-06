@@ -9,6 +9,12 @@ class InformationProvider with ChangeNotifier{
       List<Informations> getInformation(){
         return informations;
       }
+      void initData() async{
+          var db = InformationDB(dbName: "informations.db");
+          var snapshot = await db.loadAllData();
+
+          notifyListeners();
+      }
 
       void addInformation(Informations statement) async{
           var db = InformationDB(dbName: "informations.db");

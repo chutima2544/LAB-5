@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_o2/models/Informations.dart';
 import 'package:flutter_application_o2/providers/information_provider.dart';
 import 'package:flutter_application_o2/screens/form_screen.dart';
+import 'package:flutter_application_o2/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -50,50 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return FormScreen();
-                  }));
-                })
-          ],
-        ),
-        body: Consumer(
-          builder: (context, InformationProvider provider, Widget? child) {
-            var count = provider.informations.length;
-            if (count <= 0) {
-              return Center(
-                child: Text(
-                  "ไม่พบข้อมูล",
-                  style: TextStyle(fontSize: 35),
-                ),
-              );
-            } else {
-              return ListView.builder(
-                  itemCount: provider.informations.length,
-                  itemBuilder: (context, int index) {
-                    Informations data = provider.informations[index];
-                    return Card(
-                      elevation: 5,
-                      margin: const EdgeInsets.all(5.0),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          child: FittedBox(
-                            child: Text(data.price.toString()),
-                          ),
-                        ),
-                        title: Text(data.title),
-                        subtitle: Text(data.product.toString()),
-                      ),
-                    );
-                  });
-            }
-          },
-        ));
+    return HomeScreen();
   }
 }
