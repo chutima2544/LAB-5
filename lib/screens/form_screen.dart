@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_o2/models/Information.dart';
+import 'package:flutter_application_o2/models/Informations.dart';
 import 'package:flutter_application_o2/providers/information_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -70,7 +70,7 @@ class FormScreen extends StatelessWidget {
                       var product = productController.text;  
                       var price = priceController.text;  
 
-                      Information statement = Information(
+                      Informations statement = Informations(
                         title:title,
                         product: double.parse(product),
                         price: double.parse(price),

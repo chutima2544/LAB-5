@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_o2/models/Information.dart';
+import 'package:flutter_application_o2/models/Informations.dart';
 import 'package:flutter_application_o2/providers/information_provider.dart';
 import 'package:flutter_application_o2/screens/form_screen.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return ListView.builder(
                   itemCount: provider.informations.length,
                   itemBuilder: (context, int index) {
-                    Information data = provider.informations[index];
+                    Informations data = provider.informations[index];
                     return Card(
                       elevation: 5,
                       margin: const EdgeInsets.all(5.0),
